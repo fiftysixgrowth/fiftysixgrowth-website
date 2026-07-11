@@ -1,38 +1,75 @@
 document.addEventListener("DOMContentLoaded", () => {
     const yearElement = document.getElementById("current-year");
+    const form = document.getElementById("report-form");
+    const statusElement = document.getElementById("form-status");
 
     if (yearElement) {
         yearElement.textContent = new Date().getFullYear();
     }
 
-    const form = document.getElementById("report-form");
-
-    if (!form) {
+    if (!form || !statusElement) {
         return;
     }
 
-    form.addEventListener("submit", (event) => {
+    form.addEventListener("submit", async (event) => {
         event.preventDefault();
 
-        const name = document.getElementById("name").value.trim();
-        const business = document.getElementById("business").value.trim();
-        const email = document.getElementById("email").value.trim();
-        const website = document.getElementById("website").value.trim();
-        const message = document.getElementById("message").value.trim();
+        const submitButton = form.querySelector('button[type="submit"]');
+        const websiteField = document.getElementById("website");
 
-        const subject = encodeURIComponent(
-            `Free Website Report Request - ${business}`
-        );
+        statusElement.textContent = "";
+        statusElement.className = "form-status";
 
-        const body = encodeURIComponent(
-            `Name: ${name}\n` +
-            `Business: ${business}\n` +
-            `Email: ${email}\n` +
-            `Website: ${website}\n\n` +
-            `What they want to improve:\n${message || "Not supplied"}`
-        );
+        if (!websiteField) {
+            statusElement.textContent =
+                "The website address field could not be found.";
+            statusElement.classList.add("form-status-error");
+            return;
+        }
 
-        window.location.href =
-            `mailto:hello@fiftysixgrowth.co.uk?subject=${subject}&body=${body}`;
+        let websiteValue = websiteField.value.trim();
+
+        if (
+            websiteValue &&
+            !websiteValue.startsWith("http://") &&
+            !websiteValue.startsWith("https://")
+        ) {
+            websiteValue = `https://${websiteValue}`;
+        }
+
+        websiteField.value = websiteValue;
+
+        submitButton.disabled = true;
+        submitButton.textContent = "Sending request...";
+
+        try {
+            const response = await fetch(form.action, {
+                method: "POST",
+                body: new FormData(form),
+                headers: {
+                    Accept: "application/json",
+                },
+            });
+
+            if (!response.ok) {
+                throw new Error(`Form submission failed: ${response.status}`);
+            }
+
+            form.reset();
+
+            statusElement.textContent =
+                "Thank you. Your request has been sent successfully.";
+            statusElement.classList.add("form-status-success");
+        } catch (error) {
+            console.error(error);
+
+            statusElement.textContent =
+                "Sorry, your request could not be sent. Please try again or email hello@fiftysixgrowth.co.uk.";
+            statusElement.classList.add("form-status-error");
+        } finally {
+            submitButton.disabled = false;
+            submitButton.textContent =
+                "Request My Free AI Growth Report";
+        }
     });
 });

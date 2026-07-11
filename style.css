@@ -1045,3 +1045,11 @@ margin:25px 0;
         grid-template-columns: 1fr;
     }
 }
+
+/* ============================
+   Hidden Spam Protection Field
+============================ */
+
+.honeypot-field {
+    display: none !important;
+}
