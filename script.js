@@ -20,6 +20,18 @@ document.addEventListener("DOMContentLoaded", () => {
         statusElement.textContent = "";
         statusElement.className = "form-status";
 
+        let websiteValue = websiteField.value.trim();
+
+        if (
+            websiteValue &&
+            !websiteValue.startsWith("http://") &&
+            !websiteValue.startsWith("https://")
+        ) {
+            websiteValue = `https://${websiteValue}`;
+        }
+
+            websiteField.value = websiteValue;
+        
         if (!websiteField) {
             statusElement.textContent =
                 "The website address field could not be found.";

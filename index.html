@@ -383,14 +383,18 @@ See How It Works
 
         <div class="contact-copy">
 
-            <span class="eyebrow">FREE AI GROWTH OPPORTUNITY REPORT</span>
+            <span class="eyebrow">
+                FREE AI GROWTH OPPORTUNITY REPORT
+            </span>
 
-            <<h2> Discover the opportunities that could help your business grow. </h2>
+            <h2>
+                Discover the opportunities that could help your business grow.
+            </h2>
 
             <p>
-                Tell us about your business and website. We will review your online
-                presence and identify practical opportunities around visibility,
-                trust, enquiries and customer conversion.
+                Tell us about your business and website. We will review your
+                online presence and identify practical opportunities around
+                visibility, trust, enquiries and customer conversion.
             </p>
 
             <div class="contact-points">
@@ -400,61 +404,54 @@ See How It Works
                 <p>✓ Built for local businesses</p>
             </div>
 
-            <p class="contact-email">
-                Prefer email?
-                <a href="mailto:hello@fiftysixgrowth.co.uk">
-                    hello@fiftysixgrowth.co.uk
-                </a>
-            </p>
-
         </div>
 
         <form
-
-        <input
-            type="hidden"
-            name="_subject"
-            value="New Free AI Growth Report Request"
-        >
-    <div class="honeypot-field" aria-hidden="true">
-    <label for="company-website">
-                Leave this field empty
-    </label>
-
-    <input
-        type="text"
-        id="company-website"
-        name="_gotcha"
-        tabindex="-1"
-        autocomplete="off"
-    >
-    </div>
             id="report-form"
             class="report-form"
             action="https://formspree.io/f/xdarqvon"
             method="POST"
         >
 
+            <input
+                type="hidden"
+                name="_subject"
+                value="New Free AI Growth Report Request"
+            >
+
+            <div class="honeypot-field" aria-hidden="true">
+                <input
+                    type="text"
+                    name="_gotcha"
+                    tabindex="-1"
+                    autocomplete="off"
+                >
+            </div>
+
             <div class="form-row">
 
                 <div class="form-group">
                     <label for="name">Your name</label>
+
                     <input
                         type="text"
                         id="name"
                         name="Customer Name"
                         required
+                        autocomplete="name"
                         placeholder="Your name"
                     >
                 </div>
 
                 <div class="form-group">
                     <label for="business">Business name</label>
+
                     <input
                         type="text"
                         id="business"
                         name="Business Name"
                         required
+                        autocomplete="organization"
                         placeholder="Business name"
                     >
                 </div>
@@ -463,28 +460,34 @@ See How It Works
 
             <div class="form-group">
                 <label for="email">Business email</label>
+
                 <input
                     type="email"
                     id="email"
                     name="email"
                     required
+                    autocomplete="email"
                     placeholder="you@yourbusiness.co.uk"
                 >
             </div>
 
             <div class="form-group">
                 <label for="website">Website address</label>
+
                 <input
-                    type="url"
+                    type="text"
                     id="website"
                     name="Website"
                     required
-                    placeholder="https://yourwebsite.co.uk"
+                    placeholder="www.yourwebsite.co.uk"
                 >
             </div>
 
             <div class="form-group">
-                <label for="message">What would you most like to improve?</label>
+                <label for="message">
+                    What would you most like to improve?
+                </label>
+
                 <textarea
                     id="message"
                     name="Growth Priorities"
@@ -494,8 +497,15 @@ See How It Works
             </div>
 
             <button type="submit" class="form-button">
-                Request My Free AI Website Report
+                Request My Free AI Growth Report
             </button>
+
+            <p
+                id="form-status"
+                class="form-status"
+                role="status"
+                aria-live="polite"
+            ></p>
 
             <p class="form-note">
                 By submitting this form, you agree that FiftySix Growth may
